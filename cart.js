@@ -66,13 +66,16 @@ var vm=new Vue({
 		getJson:function(){
 			// 调用vue-resource插件的$http.get方法，then中第一个function为get成功方法，第二个方法为get失败方法
 			// vue-resource学习地址(来自第三方分享，并非本人创作，其内容带来的法律责任与灿灿无关，请自学筛选学习)：http://www.cnblogs.com/axl234/p/5899137.html
-			this.$http.get("data/cartData.json").then(function(res){
+			this.$http.get("cartData.json").then(function(res){
 				// 不知道为什么我总是获取失败，为了不影响演示，就在失败方法中获取了数据，成功方法仅为打印
 				// 如果有同学获取成功，可以console.log一下res然后获取正确的参数到shopList即可
-				console.log("成功");
+				this.shopList=res.data.result.list;
+				console.log(res,"suc");
+				// console.log("成功");
 				// 失败方法
 			},function(res){
 				// 成功获取json内容
+				console.log(res,"err");
 				this.shopList=res.data.result.list;
 			});
 		},
