@@ -18,4 +18,4 @@ Imooc课程中的配课练习题
 chrome浏览器有内置插件支持直接读取
 
 # 示例地址：
-http://b133594f-6fd1-4eb9-afb2-6824a06e498f.coding.io/
+http://dd71a00e-fc09-4735-ae1a-513e3d25a1af.coding.io
