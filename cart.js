@@ -22,23 +22,25 @@ var vm = new Vue({
 		shopList: {
 			// 变化后处理的方法，对handler进行方法定义
 			handler: function () {
-				// 判断每个对象内是否存在checked属性(此不正确逻辑思想，因为如果对象数量内容变化，就不止读取3条，应该用forEach循环处理，大家可发散思维)
-				// if(如果三者checked属性全存在，且全为真)
-				if (this.shopList[0].checked && this.shopList[1].checked && this.shopList[2].checked)
-					// this指向当前vm实例，使checkAll属性值为真
-					this.checkAll = true;
-				else
-					// 反之则为假(即checked属性不全存在，或者不全为真时)
-					this.checkAll = false;
-				// 使总价赋值为0，然后重新计算(通过监听shopList内部的变化，变相达到总价的监听思想，总价的改变绑定到单个元素的改变)
+				// 定义全选Falg
+				var allFlag = 0;
+				// 置空总价
 				this.total = 0;
-				// forEach循环判断，执行计算，ele为传入的当前element，即shopList内的对象
-				this.shopList.forEach(function (ele) {
-					// 判断当前对象的checked属性是否为真				
-					if (ele.checked)
-						// 为真时总价+=该对象单价×数量
-						this.vm.total += ele.productPrice * ele.productQuantity;
-				});
+				// 遍历shoplist
+				for (var i in this.shopList) {
+					// 判断是否选中
+					if (this.shopList[i].checked == true) {
+						allFlag++;
+						// 对选中的元素与总价累加
+						this.total += this.shopList[i].productPrice * this.shopList[i].productQuantity;
+					}
+				}
+				// 判断选中个数是否与shoplist长度相同，即判断全选
+				if (allFlag == this.shopList.length) {
+					this.checkAll = true;
+				} else {
+					this.checkAll = false;
+				}
 			},
 			// 官方解释：深度观察。(个人实践理解：如果没有此属性的赋值为真，则无法持续监听变化，无论监听属性作何改变，始终只对第一次变化生效)
 			deep: true
@@ -67,9 +69,8 @@ var vm = new Vue({
 			// 调用vue-resource插件的$http.get方法，then中第一个function为get成功方法，第二个方法为get失败方法
 			// vue-resource学习地址(来自第三方分享，并非本人创作，其内容带来的法律责任与灿灿无关，请自学筛选学习)：http://www.cnblogs.com/axl234/p/5899137.html
 			// 后来换成了axios插件 这也是vue创造者 - 尤雨溪的推荐
-			axios.get('./data/cartData.json').then(res=>{
-				console.log(res);
-				this.shopList=res.data.result.list;
+			axios.get('./data/cartData.json').then(res => {
+				this.shopList = res.data.result.list;
 			})
 		},
 		// 调整数量的方法，flag判断加减

@@ -4,6 +4,8 @@
 
 > 基于src引入vue 非vue-cli创建的webpack应用
 
+
+
 Imooc课程中的配课练习题
 
 由灿灿根据题目另辟思路制作，并添加注释，现开源供大家学习。
@@ -20,6 +22,16 @@ http://dd71a00e-fc09-4735-ae1a-513e3d25a1af.coding.io
 
 > 2017年12月19日
 
+>> Bug:
+
+    ·之前版本删除某行元素后，总价没有实时计算
+
+    ·优化了watch模式的方法
+
+>> Other:
+
     ·http插件由vue-resource替换为axios(Vue作者尤雨溪亲荐)
     
     ·不再维护微云保存的项目
+
+    
