@@ -1,7 +1,9 @@
 # My-Shop-Car-Vue2.0
 
 《使用vue2.0实现购物车功能》
-> 基于src引入vue 非vue-cli
+
+> 基于src引入vue 非vue-cli创建的webpack应用
+
 Imooc课程中的配课练习题
 
 由灿灿根据题目另辟思路制作，并添加注释，现开源供大家学习。
